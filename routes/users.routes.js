@@ -97,3 +97,5 @@ async function generarCodigoEmpresaUnico() {
 
   return codigoFinal;
 }
+
+module.exports = router;
