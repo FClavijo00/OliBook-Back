@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
 // Cors
 const cors = require("cors");
 app.use(cors({
-    origin: [process.env.FRONTEND_URL || 'http://localhost:8100', 'https://tu-app-en-vercel.vercel.app'],
+    origin: [process.env.FRONTEND_URL || 'http://localhost:8100', 'https://oli-book.vercel.app/'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Access-Control-Allow-Headers', 'Access-Control-Allow-Origin'],
 }));
