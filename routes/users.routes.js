@@ -53,9 +53,9 @@ router.post("/register", async (req, res) => {
     }
 
     const sqlUsuario = `
-      INSERT INTO users (nombre, email, password, rol, empresa_id) 
+      INSERT INTO users (name, email, password, rol, empresa_id) 
       VALUES ($1, $2, $3, $4, $5) 
-      RETURNING id, nombre, email, rol, empresa_id
+      RETURNING id, name, email, rol, empresa_id
     `;
     const result = await db.query(sqlUsuario, [nombre, email, password, tipoUsuario, empresaID]);
     const resultUsuario = await db.query("SELECT * FROM users WHERE id = $1", [result.rows[0].id]);
