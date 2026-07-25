@@ -3,6 +3,7 @@ const express = require("express");
 
 // Inicializamos Express
 const app = express();
+app.use(express.json());
 
 // Definimos el puerto
 const port = process.env.PORT || 3000;
@@ -14,10 +15,25 @@ app.get("/", (req, res) => {
 
 // Cors
 const cors = require("cors");
+
+const allowedOrigins = [
+    'http://localhost:3000',
+    'https://oli-book.vercel.app',
+    process.env.FRONTEND_URL
+];
+
 app.use(cors({
-    origin: [process.env.FRONTEND_URL || 'http://localhost:8100', 'https://oli-book.vercel.app/'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'Access-Control-Allow-Headers', 'Access-Control-Allow-Origin'],
+  origin: function (origin, callback) {
+    // Permitir peticiones sin origen (como herramientas Postman o apps móviles) o si está en la lista
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Bloqueado por política CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 }));
 
 // Body Parser
