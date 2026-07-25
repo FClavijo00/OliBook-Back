@@ -28,15 +28,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 require('dotenv').config();
 
 // Rutas
-const usersRoutes = require("./routes/users.routes");
+const usersRoutes = require("../routes/users.routes.js");
 app.use("/api/users", usersRoutes);
-const parcelasRoutes = require("./routes/parcelas.routes");
+const parcelasRoutes = require("../routes/parcelas.routes");
 app.use("/api/parcelas", parcelasRoutes);
-const sigpacRoutes = require("./routes/sigpac.routes");
+const sigpacRoutes = require("../routes/sigpac.routes");
 app.use("/api/sigpac", sigpacRoutes);
-const tipoTrabajosRoutes = require("./routes/tipo-trabajos.routes");
+const tipoTrabajosRoutes = require("../routes/tipo-trabajos.routes");
 app.use("/api/tipo-trabajos", tipoTrabajosRoutes);
-const trabajosRoutes = require("./routes/trabajos.routes");
+const trabajosRoutes = require("../routes/trabajos.routes");
 app.use("/api/trabajos", trabajosRoutes);
 
 // Asignación de puerto dinámico para Railway
