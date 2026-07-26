@@ -16,11 +16,13 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ error: "Credenciales incorrectas." });
     }
 
-    const empresaSQL = "SELECT nombre_empresa, codigo_empresa FROM empresas WHERE id = $1";
-    const empresaResult = await db.query(empresaSQL, [result.rows[0].empresa_id]);
-    result.rows[0].nombre_empresa = empresaResult.rows[0].nombre_empresa;
-    result.rows[0].codigo_empresa = empresaResult.rows[0].codigo_empresa;
-
+    if (result.rows[0].rol === 'EMPRESA' || result.rows[0].rol === 'TRABAJADOR') {
+      const empresaSQL = "SELECT * FROM empresas WHERE id = $1";
+      const empresaResult = await db.query(empresaSQL, [result.rows[0].empresa_id]);
+      result.rows[0].nombre_empresa = empresaResult.rows[0].nombre_empresa;
+      result.rows[0].codigo_empresa = empresaResult.rows[0].codigo_empresa;
+    }
+    
     res.status(201).json({
       message: "Usuario encontrado con éxito",
       user: result.rows[0]
