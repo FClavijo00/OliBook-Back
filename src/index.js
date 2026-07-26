@@ -54,6 +54,8 @@ const tipoTrabajosRoutes = require("../routes/tipo-trabajos.routes");
 app.use("/api/tipo-trabajos", tipoTrabajosRoutes);
 const trabajosRoutes = require("../routes/trabajos.routes");
 app.use("/api/trabajos", trabajosRoutes);
+const empresasRoutes = require("../routes/empresas.routes");
+app.use("/api/empresas", empresasRoutes);
 
 // Asignación de puerto dinámico para Railway
 const PORT = process.env.PORT || 3000;
