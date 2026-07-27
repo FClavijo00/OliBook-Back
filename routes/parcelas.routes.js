@@ -42,12 +42,12 @@ router.post("/obtenerParcelas", async (req, res) => {
 // Endpoint: POST /api/parcelas/nuevaParcela
 router.post("/nuevaParcela", async (req, res) => {
     try {
-        const { user_id, empresa_id, nombre_parcela, apodo_parcela, provincia, municipio, poligono, parcela, superficie_ha, referencia_cadastral, observaciones, lat, lng, x, y, wkt } = req.body;
+        const { user_id, empresa_id, nombre_parcela, apodo_parcela, provincia, municipio, poligono, parcela, superficie_ha, referencia_catastro, observaciones, lat, lng, x, y, wkt } = req.body;
         const sql = `
-            INSERT INTO parcelas (user_id, empresa_id, nombre_parcela, apodo_parcela, provincia, municipio, poligono, parcela, superficie_ha, referencia_cadastral, observaciones, lat, lng, x, y, wkt)
+            INSERT INTO parcelas (user_id, empresa_id, nombre_parcela, apodo_parcela, provincia, municipio, poligono, parcela, superficie_ha, referencia_catastro, observaciones, lat, lng, x, y, wkt)
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
         `;
-        const result = await db.query(sql, [user_id, empresa_id, nombre_parcela, apodo_parcela, provincia, municipio, poligono, parcela, superficie_ha, referencia_cadastral, observaciones, lat, lng, x, y, wkt]);
+        const result = await db.query(sql, [user_id, empresa_id, nombre_parcela, apodo_parcela, provincia, municipio, poligono, parcela, superficie_ha, referencia_catastro, observaciones, lat, lng, x, y, wkt]);
         res.json(result.rows);
     } catch (error) {
         console.error("Error al crear la parcela:", error);
