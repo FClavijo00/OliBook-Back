@@ -30,10 +30,8 @@ router.post("/obtenerParcelas", async (req, res) => {
         ORDER BY P.nombre_parcela ASC
         ` ;
         const result = await db.query(sql, [userID]);
-        res.status(201).json({
-            message: "Parcelas obtenidas con éxito",
-            parcelas: result.rows[0]
-        });
+
+        res.status(200).json(result.rows);
     } catch (error) {
         console.error("Error al obtener las parcelas:", error);
         res.status(500).json({ error: "Error interno del servidor." });
