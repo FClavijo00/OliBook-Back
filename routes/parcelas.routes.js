@@ -8,6 +8,7 @@ const db = require("../src/db"); // Importa tu archivo de conexión
 // Endpoint: POST /api/parcelas/obtenerParcelas
 router.post("/obtenerParcelas", async (req, res) => {
     try {
+        const { userID, empresaID } = req.body;
         const sqlBase = `
         SELECT 
             P.*,
