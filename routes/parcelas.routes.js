@@ -114,6 +114,20 @@ router.post("/eliminarParcela", async (req, res) => {
     }
 });
 
+// Eliminar coordenadas de parcela
+// Endpoint: POST /api/parcelas/eliminarCoordenadas
+router.post("/eliminarCoordenadas", async (req, res) => {
+    try {
+        const { id } = req.body;
+        const sql = "UPDATE parcelas SET x = NULL, y = NULL, lat = NULL, lng = NULL, wkt = NULL WHERE id = $1";
+        await db.query(sql, [id]);
+        res.status(200).json({ message: "Coordenadas eliminadas con éxito" });
+    } catch (error) {
+        console.error("Error al eliminar las coordenadas de la parcela:", error);
+        res.status(500).json({ error: "Error interno del servidor." });
+    }
+});
+
 
 
 module.exports = router;
