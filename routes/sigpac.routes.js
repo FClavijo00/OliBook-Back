@@ -109,7 +109,7 @@ router.post("/actualizarCoordenadas", async (req, res) => {
         const sql2 = "UPDATE parcelas SET wkt = $1 WHERE id = $2";
         const result2 = await db.query(sql2, [wkt, id]);
 
-        const sql3 = "SELECT * FROM plots WHERE id = $1";
+        const sql3 = "SELECT * FROM parcelas WHERE id = $1";
         const result3 = await db.query(sql3, [id]);
 
         res.json(result3.rows[0]);
